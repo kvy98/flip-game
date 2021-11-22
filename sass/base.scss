@@ -1,0 +1,224 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.modal-game-over {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: brown;
+  transform-origin: left center;
+  animation: modalShow 1s forwards;
+  flex-direction: column;
+  gap: 4rem;
+  .title {
+    font-size: 5rem;
+  }
+  .score {
+    font-size: 4rem;
+  }
+  button {
+    width: 80%;
+    height: 6rem;
+    border-radius: 6rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 3rem;
+  }
+}
+@keyframes modalShow {
+  0% {
+    transform: translate(-50%, 0%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, 0%) scale(1);
+  }
+}
+.game-status {
+  padding-top: 1rem;
+  display: flex;
+  height: 10rem;
+  width: 100%;
+  position: absolute;
+  z-index: 333;
+  justify-content: flex-end;
+  margin-right: 10%;
+}
+#level,
+#time,
+#your-score {
+  visibility: hidden;
+  flex: 0 0 20%;
+  gap: 5rem;
+  background-color: blueviolet;
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 4rem;
+}
+#your-score {
+  font-size: 2rem;
+  &::before {
+    font-size: 1.8rem;
+  }
+}
+#level {
+  &::before {
+    content: "level:";
+    font-size: 2rem;
+  }
+}
+#time {
+  &::before {
+    content: "time:";
+    font-size: 2rem;
+  }
+}
+@keyframes switchSceneBehind {
+  0% {
+    z-index: 2;
+    transform: translate(0);
+  }
+  50% {
+    transform: translate3d(120%, -50%, -200px);
+    z-index: 2;
+  }
+  51% {
+    z-index: 1;
+  }
+  100% {
+    transform: translate(0);
+    z-index: 1;
+  }
+}
+
+.scene {
+  min-width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  background-color: red;
+  perspective: 600px;
+  &.start {
+    .start-scene {
+      transform-origin: left top;
+      box-shadow: 0 0.5rem 2rem rgba($color: #000000, $alpha: 0.45);
+      animation: switchSceneBehind 2s forwards;
+    }
+  }
+}
+
+.start-scene {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20%;
+  height: 100%;
+  width: 100%;
+  transition: all 1s;
+  background-image: linear-gradient(
+      to left bottom,
+      rgba(#fff, 0.6),
+      rgba(#fff, 0.6)
+    ),
+    url(/img/bg.jpg);
+  background-size: cover;
+
+  .btn {
+    width: 60%;
+    padding: 4rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 10rem;
+    font-size: 4rem;
+    box-shadow: 0 1rem 2rem rgba(#000, 0.6);
+    color: #fff;
+    &--start {
+      background-color: #37b24d;
+    }
+    &--score {
+      background-color: #e03131;
+    }
+  }
+}
+
+.play-scene {
+  padding-top: 10rem;
+  min-height: 100%;
+  width: 100%;
+  transition: all 1s;
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 2rem rgba($color: #000000, $alpha: 0.45);
+
+  .cards {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding: 4rem;
+    gap: 1rem;
+  }
+}
+.card {
+  flex: 0 0 10rem;
+  height: 10rem;
+  cursor: pointer;
+  position: relative;
+  perspective: 500px;
+  &.flip {
+    &::before {
+      transform: rotateY(-180deg);
+    }
+    .card__img {
+      transform: rotateY(0deg);
+    }
+  }
+  &::before {
+    transition: transform 0.5s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: "";
+    display: block;
+    background-position: 50%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    backface-visibility: hidden;
+    background-image: url(/img/back-card.jpeg);
+    background-size: 200%;
+    box-shadow: 0 0.25rem 1rem rgba(#000, 0.65);
+  }
+  &__img {
+    transition: transform 0.5s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+    object-fit: cover;
+    object-position: top center;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    box-shadow: 0 0.25rem 1rem rgba(#000, 0.65);
+  }
+}

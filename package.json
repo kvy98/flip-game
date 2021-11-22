@@ -1,0 +1,17 @@
+{
+  "name": "flip-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "wacth-sass": "node-sass sass/base.scss style/style.css -w",
+    "live": "live-server",
+    "start": "npm-run-all --parallel wacth-sass live"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^6.0.1",
+    "npm-run-all": "^4.1.5"
+  }
+}

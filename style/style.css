@@ -13,10 +13,11 @@ html {
   align-items: center;
   justify-content: center;
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: brown;
-  transform-origin: left center;
   animation: modalShow 1s forwards;
   flex-direction: column;
   gap: 4rem; }
@@ -35,9 +36,9 @@ html {
 
 @keyframes modalShow {
   0% {
-    transform: translate(-50%, 0%) scale(0); }
+    transform: scale(0); }
   100% {
-    transform: translate(-50%, 0%) scale(1); } }
+    transform: scale(1); } }
 
 .game-status {
   padding-top: 1rem;

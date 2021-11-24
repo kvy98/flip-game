@@ -84,7 +84,7 @@ function exitGame() {
   popModal();
 }
 function popModal() {
-  document.body.removeChild(document.querySelector(".modal-game-over"));
+  document.querySelector(".modal-game-over").remove();
   document.querySelector(".scene").classList.remove("start");
 }
 function showModal(title, _score, exitHandle) {
@@ -154,8 +154,8 @@ function initGame() {
         playPointSound();
         pauseGame = true;
         setTimeout(() => {
-          cardContainer.removeChild(cardPick[0]);
-          cardContainer.removeChild(cardPick[1]);
+          cardPick[0].remove();
+          cardPick[1].remove();
           cards.pop();
           cards.pop();
           cardPick = [];
@@ -176,7 +176,7 @@ function initGame() {
     });
     cards.push(card);
     cardContainer.appendChild(card);
-    imgCountAppear[key] = imgCountAppear[key] ? imgCountAppear[key] + 1 : 1;
+    imgCountAppear[key] = imgCountAppear[key] + 1 || 1;
   }
 }
 btnStart.addEventListener("click", () => {
@@ -191,7 +191,7 @@ btnStart.addEventListener("click", () => {
     levelElement.style.visibility = "visible";
     TimeElement.style.visibility = "visible";
     scoreElement.style.visibility = "visible";
-    scoreElement.textContent = `Score:0`;
+    scoreElement.textContent = `Score:${score}`;
     playScene.style.pointerEvents = "auto";
     initGame();
   }, animationDuration);

@@ -68,7 +68,7 @@ function getScore() {
 function writeScore() {
   const localStorage = window.localStorage;
   const oldScore = getScore();
-  if (oldScore < score || oldScore == undefined) {
+  if (!oldScore || oldScore < score) {
     localStorage.setItem("hight-score", score);
   }
 }
@@ -146,23 +146,25 @@ function initGame() {
       cardPick.push(card);
       card.classList.add("flip");
       playFlipSound();
-      if (
-        cardPick.length == 2 &&
-        cardPick[0].querySelector("img").src ===
-          cardPick[1].querySelector("img").src
-      ) {
+      if (cardPick.length == 2) {
+        const [firstCardPick, secondCardPick] = cardPick;
+        if (
+          firstCardPick.querySelector("img").src !=
+          secondCardPick.querySelector("img").src
+        )
+          return;
         playPointSound();
         pauseGame = true;
         setTimeout(() => {
-          cardPick[0].remove();
-          cardPick[1].remove();
+          firstCardPick.remove();
+          secondCardPick.remove();
           cards.pop();
           cards.pop();
           cardPick = [];
           score += 10;
           scoreElement.textContent = `Score:${score}`;
           pauseGame = false;
-          if (cards.length == 0) {
+          if (!cards.length) {
             currentIndex++;
             clearInterval(eTimeOut);
             if (gameLevels.length == currentIndex) {
@@ -185,6 +187,7 @@ btnStart.addEventListener("click", () => {
   const animationDuration =
     Number(getComputedStyle(startScene).animationDuration.replace("s", "")) *
     1000;
+  console.log(animationDuration);
   const playScene = document.querySelector(".play-scene");
   playScene.style.pointerEvents = "none";
   setTimeout(() => {

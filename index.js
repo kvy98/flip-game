@@ -137,49 +137,52 @@ function initGame() {
       } while (imgCountAppear[key] === numberAppear);
     }
     const card = cardInit(imgArrClone[index]);
-    card.addEventListener("click", () => {
-      if (card.classList.contains("flip") || pauseGame) return;
-      if (cardPick.length >= 2) {
-        cardPick.forEach((item) => item.classList.remove("flip"));
-        cardPick = [];
-      }
-      cardPick.push(card);
-      card.classList.add("flip");
-      playFlipSound();
-      if (cardPick.length == 2) {
-        const [firstCardPick, secondCardPick] = cardPick;
-        if (
-          firstCardPick.querySelector("img").src !=
-          secondCardPick.querySelector("img").src
-        )
-          return;
-        playPointSound();
-        pauseGame = true;
-        setTimeout(() => {
-          firstCardPick.remove();
-          secondCardPick.remove();
-          cards.pop();
-          cards.pop();
-          cardPick = [];
-          score += 10;
-          scoreElement.textContent = `Score:${score}`;
-          pauseGame = false;
-          if (!cards.length) {
-            currentIndex++;
-            clearInterval(eTimeOut);
-            if (gameLevels.length == currentIndex) {
-              stopGame();
-              return;
-            }
-            initGame();
-          }
-        }, delayTime);
-      }
-    });
     cards.push(card);
     cardContainer.appendChild(card);
     imgCountAppear[key] = imgCountAppear[key] + 1 || 1;
   }
+
+  cardContainer.addEventListener("click", (e) => {
+    const card = e.target;
+    if (!card.classList.contains("card")) return;
+    if (card.classList.contains("flip") || pauseGame) return;
+    if (cardPick.length >= 2) {
+      cardPick.forEach((item) => item.classList.remove("flip"));
+      cardPick = [];
+    }
+    cardPick.push(card);
+    card.classList.add("flip");
+    playFlipSound();
+    if (cardPick.length == 2) {
+      const [firstCardPick, secondCardPick] = cardPick;
+      if (
+        firstCardPick.querySelector("img").src !=
+        secondCardPick.querySelector("img").src
+      )
+        return;
+      playPointSound();
+      pauseGame = true;
+      setTimeout(() => {
+        firstCardPick.remove();
+        secondCardPick.remove();
+        cards.pop();
+        cards.pop();
+        cardPick = [];
+        score += 10;
+        scoreElement.textContent = `Score:${score}`;
+        pauseGame = false;
+        if (!cards.length) {
+          currentIndex++;
+          clearInterval(eTimeOut);
+          if (gameLevels.length == currentIndex) {
+            stopGame();
+            return;
+          }
+          initGame();
+        }
+      }, delayTime);
+    }
+  });
 }
 btnStart.addEventListener("click", () => {
   document.querySelector(".scene").classList.add("start");

@@ -108,7 +108,7 @@ export class PlayScene extends Scene {
           this.#disableClick = false;
           if (!this.#cards.length) {
             clearInterval(this.#eTimeOut);
-            if (this.#LEVELS.length == currentIndex) {
+            if (this.#LEVELS.length == this.#currentLevel) {
               this.#stopGame();
               return;
             }

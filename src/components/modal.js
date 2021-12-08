@@ -1,7 +1,3 @@
-function popModal() {
-  document.querySelector(".modal-game-over").remove();
-  document.querySelector(".scene").classList.remove("start");
-}
 class Modal extends HTMLElement {
   constructor(title, message, onExit) {
     super();

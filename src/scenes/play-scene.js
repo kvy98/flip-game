@@ -144,6 +144,7 @@ export class PlayScene extends Scene {
       this.#cards.push(card);
       this.cardContainer.appendChild(card);
       imgCountAppear[key] = imgCountAppear[key] + 1 || 1;
+      // add load event to card if image in all card is loaded the game is start
       card.imgElement.addEventListener("load", () => {
         this.#countImgLoaded++;
         if (this.#countImgLoaded == numCard) {

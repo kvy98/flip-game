@@ -1,6 +1,4 @@
 import { Scene } from "./scene.js";
-// import * as Helper from "./../utils/helper.js";
-// import { Modal } from "../components/components.js";
 const rawHTML = `
 <button class="btn btn--start">New Game</button>
 <button class="btn btn--score">Hight Score</button>
@@ -15,13 +13,16 @@ export class StartScene extends Scene {
     this.#btnScore = this.querySelector(".btn--score");
     this.attachEvent = function ({ btnStartHandle, btnScoreHanle }) {
       this.#btnStart.addEventListener("click", btnStartHandle);
-      this.#btnScore.addEventListener("click", btnScoreHanle);
+      this.#btnScore.addEventListener("click", function () {
+        this.disabled = true;
+        const animationTime = btnScoreHanle();
+        console.log(animationTime);
+        setTimeout(() => {
+          this.disabled = false;
+        }, animationTime * 1000);
+      });
       delete this.attachEvent;
     };
   }
 }
 window.customElements.define("start-scene", StartScene);
-
-// if (!window.customElements.get("start-scene")) {
-//   window.customElements.define("start-scene", StartScene);
-// }

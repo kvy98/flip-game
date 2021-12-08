@@ -11,6 +11,3 @@ export class Card extends HTMLElement {
 }
 window.customElements.define("ecustom-card", Card);
 
-// if (!window.customElements.get("card")) {
-//   window.customElements.define("card", Card);
-// }

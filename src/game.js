@@ -27,6 +27,8 @@ class Game {
         const message = `Your highest score:${score}`;
         const modal = new Modal(title, message);
         modal.show();
+        const { animationDuration: animationTime } = getComputedStyle(modal);
+        return Number.parseFloat(animationTime);
       },
     });
     this.#run();
@@ -42,25 +44,3 @@ const playScene = new PlayScene();
 
 const scenes = [startScene, playScene];
 const game = new Game(scenes);
-// btnStart.addEventListener("click", () => {
-//   document.querySelector(".scene").classList.add("start");
-//   const startScene = document.querySelector(".start-scene");
-//   const animationDuration =
-//     Number(getComputedStyle(startScene).animationDuration.replace("s", "")) *
-//     1000;
-//   console.log(animationDuration);
-//   const playScene = document.querySelector(".play-scene");
-//   playScene.style.pointerEvents = "none";
-//   setTimeout(() => {
-//     levelElement.style.visibility = "visible";
-//     TimeElement.style.visibility = "visible";
-//     scoreElement.style.visibility = "visible";
-//     scoreElement.textContent = `Score:${score}`;
-//     playScene.style.pointerEvents = "auto";
-//     initGame();
-//   }, animationDuration);
-// });
-// btnScore.addEventListener("click", () => {
-//   const _score = getScore() ?? 0;
-//   showModal("HIGH SCORE", _score, popModal);
-// });

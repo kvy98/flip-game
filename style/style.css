@@ -74,19 +74,6 @@ ecustom-modal {
   content: "time:";
   font-size: 2rem; }
 
-@keyframes switchSceneBehind {
-  0% {
-    z-index: 2;
-    transform: translate(0); }
-  50% {
-    transform: translate3d(120%, -50%, -200px);
-    z-index: 2; }
-  51% {
-    z-index: 1; }
-  100% {
-    transform: translate(0);
-    z-index: 1; } }
-
 body {
   min-width: 100vw;
   position: relative;

@@ -73,7 +73,6 @@ export class PlayScene extends Scene {
     };
     ///---- addEventListenter------------
     this.audio.addEventListener("canplaythrough", function () {
-      console.log("play-audio");
       this.play();
     });
     this.cardContainer.addEventListener("click", (e) => {
@@ -97,6 +96,7 @@ export class PlayScene extends Scene {
           return;
         this.#playSound(AUDIO_TYPE.POINT);
         this.#disableClick = true;
+        //make timer event wait when 2 card matching and handle logic for add point
         setTimeout(() => {
           firstCardPick.remove();
           secondCardPick.remove();
@@ -108,7 +108,7 @@ export class PlayScene extends Scene {
           this.#disableClick = false;
           if (!this.#cards.length) {
             clearInterval(this.#eTimeOut);
-            if (this.#LEVELS.length == this.#currentLevel) {
+            if (this.#LEVELS.length - 1 === this.#currentLevel) {
               this.#stopGame();
               return;
             }

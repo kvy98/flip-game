@@ -28,6 +28,7 @@ const IMG_DATA = [
   "card-10.jpeg",
 ];
 export class PlayScene extends Scene {
+  #countImgLoaded = 0;
   #currentLevel = 0;
   #cards = [];
   #cardPick = [];
@@ -143,7 +144,15 @@ export class PlayScene extends Scene {
       this.#cards.push(card);
       this.cardContainer.appendChild(card);
       imgCountAppear[key] = imgCountAppear[key] + 1 || 1;
+      card.imgElement.addEventListener("load", () => {
+        this.#countImgLoaded++;
+        if (this.#countImgLoaded == numCard) {
+          this.#initTimeEvent(time);
+        }
+      });
     }
+  }
+  #initTimeEvent(time) {
     this.#eTimeOut = setInterval(() => {
       this.#tickTime++;
       this.timeLabel.innerText = time - this.#tickTime;

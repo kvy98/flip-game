@@ -18,7 +18,7 @@ ecustom-modal {
   width: 100vw;
   height: 100vh;
   background-color: brown;
-  animation: modalShow 1s forwards;
+  animation: modalShow 0.5s forwards;
   flex-direction: column;
   gap: 4rem; }
   ecustom-modal .title {

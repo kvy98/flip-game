@@ -18,7 +18,7 @@ ecustom-modal {
   width: 100vw;
   height: 100vh;
   background-color: brown;
-  animation: modalShow 1s forwards;
+  animation: modalShow 0.5s forwards;
   flex-direction: column;
   gap: 4rem;
   .title {
@@ -187,12 +187,3 @@ body {
     }
   }
 }
-// .scene {
-//   &.start {
-//     .start-scene {
-//       transform-origin: left top;
-//       box-shadow: 0 0.5rem 2rem rgba($color: #000000, $alpha: 0.45);
-//       animation: switchSceneBehind 2s forwards;
-//     }
-//   }
-// }

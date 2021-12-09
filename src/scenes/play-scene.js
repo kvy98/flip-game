@@ -82,11 +82,11 @@ export class PlayScene extends Scene {
       if (!card.classList.contains("card")) return;
       if (card.classList.contains("flip") || this.#disableClick) return;
       if (this.#cardPick.length >= 2) {
-        this.#cardPick.forEach((item) => item.classList.remove("flip"));
+        this.#cardPick.forEach((card) => card.flipDown());
         this.#cardPick = [];
       }
       this.#cardPick.push(card);
-      card.classList.add("flip");
+      card.flipUp();
       this.#playSound();
       if (this.#cardPick.length == 2) {
         const [firstCardPick, secondCardPick] = this.#cardPick;

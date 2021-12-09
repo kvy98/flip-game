@@ -16,7 +16,6 @@ export class StartScene extends Scene {
       this.#btnScore.addEventListener("click", function () {
         this.disabled = true;
         const animationTime = btnScoreHanle();
-        console.log(animationTime);
         setTimeout(() => {
           this.disabled = false;
         }, animationTime * 1000);

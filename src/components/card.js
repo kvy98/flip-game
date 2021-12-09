@@ -8,5 +8,11 @@ export class Card extends HTMLElement {
     this.imgElement = imgElement;
     this.appendChild(imgElement);
   }
+  flipUp() {
+    this.classList.add("flip");
+  }
+  flipDown() {
+    this.classList.remove("flip");
+  }
 }
 window.customElements.define("ecustom-card", Card);

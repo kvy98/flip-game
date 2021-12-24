@@ -103,7 +103,7 @@ body {
           rgba(#fff, 0.6),
           rgba(#fff, 0.6)
         ),
-        url(/assets/img/bg.jpg);
+        url(./../assets/img/bg.jpg);
       background-size: cover;
 
       .btn {
@@ -168,7 +168,7 @@ body {
         left: 0;
         z-index: 2;
         backface-visibility: hidden;
-        background-image: url(/assets/img/back-card.jpeg);
+        background-image: url(./../assets/img/back-card.jpeg);
         background-size: 200%;
         box-shadow: 0 0.25rem 1rem rgba(#000, 0.65);
       }

@@ -1,6 +1,19 @@
 import { Scene } from "./scene.js";
 import { makeRandom, writeScore, getScore } from "./../utils/helper.js";
 import { Card, Modal } from "../components/components.js";
+import card1 from "./../assets/img/card-1.jpeg";
+import card2 from "./../assets/img/card-2.jpeg";
+import card3 from "./../assets/img/card-3.jpeg";
+import card4 from "./../assets/img/card-4.jpeg";
+import card5 from "./../assets/img/card-5.jpeg";
+import card6 from "./../assets/img/card-6.jpeg";
+import card7 from "./../assets/img/card-7.jpeg";
+import card8 from "./../assets/img/card-8.jpeg";
+import card9 from "./../assets/img/card-9.jpeg";
+import card10 from "./../assets/img/card-10.jpeg";
+import audioFlip from "./../assets/audio/flip.mp3";
+import audioPoint from "./../assets/audio/point.mp3";
+
 const rawHTML = `
     <audio id="audio"></audio>
     <div class="game-status">
@@ -11,22 +24,22 @@ const rawHTML = `
     <ul class="cards"></ul>
 `;
 const AUDIO_TYPE = {
-  FLIP: "/assets/audio/flip.mp3",
-  POINT: "/assets/audio/point.mp3",
+  FLIP: audioFlip,
+  POINT: audioPoint,
 };
-const IMG_ASSETS_PATH = "/assets/img/";
 const IMG_DATA = [
-  "card-1.jpeg",
-  "card-2.jpeg",
-  "card-3.jpeg",
-  "card-4.jpeg",
-  "card-5.jpeg",
-  "card-6.jpeg",
-  "card-7.jpeg",
-  "card-8.jpeg",
-  "card-9.jpeg",
-  "card-10.jpeg",
+  card1,
+  card2,
+  card3,
+  card4,
+  card5,
+  card6,
+  card7,
+  card8,
+  card9,
+  card10,
 ];
+
 export class PlayScene extends Scene {
   #countImgLoaded = 0;
   #currentLevel = 0;
@@ -119,6 +132,7 @@ export class PlayScene extends Scene {
       }
     });
   }
+
   load() {
     super.load();
     const { NUM_CARD: numCard, LEVEL: level } =
@@ -140,7 +154,7 @@ export class PlayScene extends Scene {
           key = imgArrClone[index];
         } while (imgCountAppear[key] === numberAppear);
       }
-      const card = new Card(`${IMG_ASSETS_PATH}${imgArrClone[index]}`);
+      const card = new Card(`${imgArrClone[index]}`);
       this.#cards.push(card);
       this.cardContainer.appendChild(card);
       imgCountAppear[key] = imgCountAppear[key] + 1 || 1;

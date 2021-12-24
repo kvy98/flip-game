@@ -1,4 +1,8 @@
 "use strict";
+import "./assets/img/bg.jpg";
+import "./assets/img/back-card.jpeg";
+import "./sass/base.scss";
+
 import { StartScene, PlayScene } from "./scenes/scenes.js";
 import { Modal } from "./components/components.js";
 import { getScore } from "./utils/helper.js";
